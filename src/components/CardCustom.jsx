@@ -9,12 +9,12 @@ const CardCustom = () => {
       if (e.target.value.trim().length !== 0) {
         let object;
         if (tarea.length == 0) {
-           object = {
+          object = {
             id: 1,
             desc: e.target.value.trim(),
           };
         } else {
-           object = {
+          object = {
             id: tarea[tarea.length - 1].id + 1,
             desc: e.target.value.trim(),
           };
@@ -24,6 +24,10 @@ const CardCustom = () => {
         alert('Ingrese una tarea.');
       }
     }
+  };
+  let deleteElement = (id) => {
+    let tareaAUX = [...tarea].filter((elm) => elm.id !== id);
+    setTarea(tareaAUX);
   };
   return (
     <div className='d-flex justify-content-center align-items-center min-vh-100'>
@@ -36,7 +40,7 @@ const CardCustom = () => {
         <div>
           <ul>
             {tarea.map((element) => (
-              <Task task={element.desc} key={element.id} />
+              <Task task={element} key={element.id} deleteElement={deleteElement}/>
             ))}
           </ul>
         </div>
